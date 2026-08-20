@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
   
   printf("O numero %d em bin: %d%d%d%d%d%d%d", n, res%2, bit_2, bit_4, bit_8, bit_16, bit_32, bit_64);
   
-  */
+  
   
   int x1, x2, y1, y2, p1, p2;
   float dis;
@@ -47,6 +47,15 @@ int main(int argc, char** argv) {
 
 
   printf("a distancia entre P1 e P2 = &f", dis); 
+
+*/
+
+	int a, b, c, maior_tempo, maior;
+	printf("Insira os valores a serem comparados: ");
+	scanf("%d %d %d", &a, &b, &c);
+	maior_tempo = ((a + b) + abs(a - b)) / 2;
+	maior = ((maior_tempo + c) + abs(maior_tempo - c)) / 2;
+	printf("O maior valor entre %d, %d e %d é: %d\n", a, b, c, maior);
   
  	
 	return 0;
