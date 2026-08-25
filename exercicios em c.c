@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
   printf("a distancia entre P1 e P2 = &f", dis); 
 
-*/
+
 
 	int a, b, c, maior_tempo, maior;
 	printf("Insira os valores a serem comparados: ");
@@ -56,6 +56,36 @@ int main(int argc, char** argv) {
 	maior_tempo = ((a + b) + abs(a - b)) / 2;
 	maior = ((maior_tempo + c) + abs(maior_tempo - c)) / 2;
 	printf("O maior valor entre %d, %d e %d é: %d\n", a, b, c, maior);
+
+	*/
+	
+/*	int a, b, c;
+	int resultado;
+	
+	printf("Insira os valores de A, B, C: ");
+	scanf("%d %d %d", &a, &b, &c);
+	
+	if (a>b){
+		resultado = a;
+	}else{
+		resultado = b;
+	}
+	if (c>resultado){
+		resultado = c;
+	}
+
+	printf("%d é o maior", resultado);
+*/
+	int n, r;
+	printf("Insira o valor: ");
+	scanf("%d", &n);
+	
+	if(n>0){
+		r = 1/n;
+	}else{
+		r = n*n/
+	}
+	printf("%f", r);
   
  	
 	return 0;
