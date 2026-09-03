@@ -1,140 +1,259 @@
-#include <stdio.h>
 
-int main()
-{
-    /* 1) Ano de nascimento */
+#include <stdio.h>
+#include <math.h>
+
+/* ---------- Prototipos ---------- */
+void exercicioA(void); /* Ano de nascimento a partir da idade */
+void exercicioB(void); /* km/h -> m/s */
+void exercicioC(void); /* Reais -> Dolares */
+void exercicioD(void); /* Celsius -> Fahrenheit */
+void exercicioE(void); /* Graus -> Radianos */
+void exercicioF(void); /* Antecessor e sucessor */
+void exercicioG(void); /* URI - divisao de premio entre 3 ganhadores */
+void exercicioH(void); /* URI 1019 - segundos -> horas:minutos:segundos */
+void exercicioI(void); /* URI 1017 - litros de combustivel gastos */
+void exercicioJ(void); /* URI 1013 - maior de tres valores (formula) */
+
+void mostrarMenu(void);
+
+int main(void) {
+    char opcao;
+    int continuar = 1;
+
+    while (continuar) {
+        mostrarMenu();
+        scanf(" %c", &opcao);
+
+        switch (opcao) {
+            case 'a':
+            case 'A':
+                exercicioA();
+                break;
+            case 'b':
+            case 'B':
+                exercicioB();
+                break;
+            case 'c':
+            case 'C':
+                exercicioC();
+                break;
+            case 'd':
+            case 'D':
+                exercicioD();
+                break;
+            case 'e':
+            case 'E':
+                exercicioE();
+                break;
+            case 'f':
+            case 'F':
+                exercicioF();
+                break;
+            case 'g':
+            case 'G':
+                exercicioG();
+                break;
+            case 'h':
+            case 'H':
+                exercicioH();
+                break;
+            case 'i':
+            case 'I':
+                exercicioI();
+                break;
+            case 'j':
+            case 'J':
+                exercicioJ();
+                break;
+            case 'q':
+            case 'Q':
+                printf("Encerrando o programa.\n");
+                continuar = 0;
+                break;
+            default:
+                printf("Opcao invalida! Tente novamente.\n");
+                break;
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+void mostrarMenu(void) {
+    printf("=========================================\n");
+    printf(" MENU DE EXERCICIOS\n");
+    printf("=========================================\n");
+    printf(" a) Ano de nascimento a partir da idade\n");
+    printf(" b) Velocidade km/h -> m/s\n");
+    printf(" c) Reais -> Dolares\n");
+    printf(" d) Celsius -> Fahrenheit\n");
+    printf(" e) Graus -> Radianos\n");
+    printf(" f) Antecessor e sucessor\n");
+    printf(" g) Divisao de premio entre 3 ganhadores\n");
+    printf(" h) URI 1019 - segundos -> h:m:s\n");
+    printf(" i) URI 1017 - litros de combustivel gastos\n");
+    printf(" j) URI 1013 - maior de tres valores (formula)\n");
+    printf(" q) Sair\n");
+    printf("=========================================\n");
+    printf("Escolha uma opcao: ");
+}
+
+/* -------------------------------------------------------------
+ * a) Ano de nascimento a partir da idade e do ano atual
+ * ------------------------------------------------------------- */
+void exercicioA(void) {
     int idade, anoAtual, anoNascimento;
 
-    printf("1) Digite sua idade: ");
+    printf("Digite a idade da pessoa: ");
     scanf("%d", &idade);
-
     printf("Digite o ano atual: ");
     scanf("%d", &anoAtual);
 
     anoNascimento = anoAtual - idade;
 
-    printf("Ano de nascimento: %d\n\n", anoNascimento);
+    printf("Ano de nascimento: %d\n", anoNascimento);
+}
 
+/* -------------------------------------------------------------
+ * b) km/h -> m/s   (M = K / 3.6)
+ * ------------------------------------------------------------- */
+void exercicioB(void) {
+    double kmh, ms;
 
-    /* 2) km/h para m/s */
-    float km, ms;
+    printf("Digite a velocidade em km/h: ");
+    scanf("%lf", &kmh);
 
-    printf("2) Digite a velocidade em km/h: ");
-    scanf("%f", &km);
+    ms = kmh / 3.6;
 
-    ms = km / 3.6;
+    printf("Velocidade em m/s: %.2lf\n", ms);
+}
 
-    printf("Velocidade em m/s: %.2f\n\n", ms);
+/* -------------------------------------------------------------
+ * c) Reais -> Dolares
+ * ------------------------------------------------------------- */
+void exercicioC(void) {
+    double valorReais, cotacaoDolar, valorDolar;
 
-
-    /* 3) Reais para dolares */
-    float reais, cotacao, dolares;
-
-    printf("3) Digite o valor em reais: ");
-    scanf("%f", &reais);
-
+    printf("Digite o valor em reais: ");
+    scanf("%lf", &valorReais);
     printf("Digite a cotacao do dolar: ");
-    scanf("%f", &cotacao);
+    scanf("%lf", &cotacaoDolar);
 
-    dolares = reais / cotacao;
+    valorDolar = valorReais / cotacaoDolar;
 
-    printf("Valor em dolares: %.2f\n\n", dolares);
+    printf("Valor em dolares: %.2lf\n", valorDolar);
+}
 
+/* -------------------------------------------------------------
+ * d) Celsius -> Fahrenheit  (F = C * 9/5 + 32)
+ * ------------------------------------------------------------- */
+void exercicioD(void) {
+    double celsius, fahrenheit;
 
-    /* 4) Celsius para Fahrenheit */
-    float celsius, fahrenheit;
-
-    printf("4) Digite a temperatura em Celsius: ");
-    scanf("%f", &celsius);
+    printf("Digite a temperatura em graus Celsius: ");
+    scanf("%lf", &celsius);
 
     fahrenheit = celsius * (9.0 / 5.0) + 32.0;
 
-    printf("Temperatura em Fahrenheit: %.2f\n\n", fahrenheit);
+    printf("Temperatura em Fahrenheit: %.2lf\n", fahrenheit);
+}
 
+/* -------------------------------------------------------------
+ * e) Graus -> Radianos  (R = G * pi / 180)
+ * ------------------------------------------------------------- */
+void exercicioE(void) {
+    double graus, radianos;
+    const double PI = 3.141592;
 
-    /* 5) Graus para radianos */
-    float graus, radianos;
-    float pi = 3.141592;
+    printf("Digite o angulo em graus: ");
+    scanf("%lf", &graus);
 
-    printf("5) Digite o angulo em graus: ");
-    scanf("%f", &graus);
+    radianos = graus * PI / 180.0;
 
-    radianos = graus * pi / 180;
+    printf("Angulo em radianos: %.6lf\n", radianos);
+}
 
-    printf("Angulo em radianos: %.4f\n\n", radianos);
-
-
-    /* 6) Antecessor e sucessor */
+/* -------------------------------------------------------------
+ * f) Antecessor e sucessor de um numero inteiro
+ * ------------------------------------------------------------- */
+void exercicioF(void) {
     int numero;
 
-    printf("6) Digite um numero inteiro: ");
+    printf("Digite um numero inteiro: ");
     scanf("%d", &numero);
 
     printf("Antecessor: %d\n", numero - 1);
-    printf("Sucessor: %d\n\n", numero + 1);
+    printf("Sucessor: %d\n", numero + 1);
+}
 
+/* -------------------------------------------------------------
+ * g) Divisao de R$780.000,00 entre 3 ganhadores (46%, 32%, resto)
+ * ------------------------------------------------------------- */
+void exercicioG(void) {
+    const double TOTAL = 780000.00;
+    double primeiro, segundo, terceiro;
 
-    /* 7) Divisao do premio */
-    float premio = 780000;
-    float primeiro, segundo, terceiro;
+    primeiro = TOTAL * 0.46;
+    segundo = TOTAL * 0.32;
+    terceiro = TOTAL - (primeiro + segundo);
 
-    primeiro = premio * 0.46;
-    segundo = premio * 0.32;
-    terceiro = premio - primeiro - segundo;
+    printf("Primeiro ganhador recebe: R$ %.2lf\n", primeiro);
+    printf("Segundo ganhador recebe: R$ %.2lf\n", segundo);
+    printf("Terceiro ganhador recebe: R$ %.2lf\n", terceiro);
+}
 
-    printf("7) Primeiro ganhador: R$ %.2f\n", primeiro);
-    printf("Segundo ganhador: R$ %.2f\n", segundo);
-    printf("Terceiro ganhador: R$ %.2f\n\n", terceiro);
+/* -------------------------------------------------------------
+ * h) URI 1019 - segundos -> horas:minutos:segundos
+ * ------------------------------------------------------------- */
+void exercicioH(void) {
+    int totalSegundos, horas, minutos, segundos;
 
+    printf("Digite a duracao em segundos: ");
+    scanf("%d", &totalSegundos);
 
-    /* 8) URI 1019 */
-    int segundos, horas, minutos;
+    horas = totalSegundos / 3600;
+    minutos = (totalSegundos % 3600) / 60;
+    segundos = totalSegundos % 60;
 
-    printf("8) Digite o tempo em segundos: ");
-    scanf("%d", &segundos);
+    printf("%d:%d:%d\n", horas, minutos, segundos);
+}
 
-    horas = segundos / 3600;
-    segundos = segundos % 3600;
+/* -------------------------------------------------------------
+ * i) URI 1017 - litros de combustivel gastos (12 km/L)
+ * ------------------------------------------------------------- */
+void exercicioI(void) {
+    double tempoHoras, velocidadeMedia, distancia, litros;
+    const double KM_POR_LITRO = 12.0;
 
-    minutos = segundos / 60;
-    segundos = segundos % 60;
+    printf("Digite o tempo da viagem (em horas): ");
+    scanf("%lf", &tempoHoras);
+    printf("Digite a velocidade media (em km/h): ");
+    scanf("%lf", &velocidadeMedia);
 
-    printf("%d:%d:%d\n\n", horas, minutos, segundos);
+    distancia = tempoHoras * velocidadeMedia;
+    litros = distancia / KM_POR_LITRO;
 
+    printf("%.3lf\n", litros);
+}
 
-    /* 9) URI 1017 */
-    float tempo, velocidade, distancia, litros;
+/* -------------------------------------------------------------
+ * j) URI 1013 - maior de tres valores usando formula
+ *    max(a,b) = (a + b + |a - b|) / 2
+ *    depois compara esse resultado com c da mesma forma.
+ * ------------------------------------------------------------- */
+void exercicioJ(void) {
+    double a, b, c, maiorAB, maiorFinal;
 
-    printf("9) Digite o tempo da viagem: ");
-    scanf("%f", &tempo);
+    printf("Digite o primeiro valor (A): ");
+    scanf("%lf", &a);
+    printf("Digite o segundo valor (B): ");
+    scanf("%lf", &b);
+    printf("Digite o terceiro valor (C): ");
+    scanf("%lf", &c);
 
-    printf("Digite a velocidade media: ");
-    scanf("%f", &velocidade);
+    maiorAB = (a + b + fabs(a - b)) / 2.0;
+    maiorFinal = (maiorAB + c + fabs(maiorAB - c)) / 2.0;
 
-    distancia = tempo * velocidade;
-    litros = distancia / 12;
-
-    printf("Litros gastos: %.3f\n\n", litros);
-
-
-    /* 10) URI 1013 */
-    int a, b, c, maior;
-
-    printf("10) Digite tres valores: ");
-    scanf("%d %d %d", &a, &b, &c);
-
-    maior = a;
-
-    if (b > maior)
-    {
-        maior = b;
-    }
-
-    if (c > maior)
-    {
-        maior = c;
-    }
-
-    printf("%d eh o maior\n", maior);
-
-    return 0;
+    printf("%.2lf eh o maior\n", maiorFinal);
+}
